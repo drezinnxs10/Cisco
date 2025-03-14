@@ -1,0 +1,13 @@
+Objetivo da aula de hoje: 04/02/2025 - CONTINUAÇÃO
+
+#01_ Configuração Base do Switch 2960 OK
+https://github.com/vaamonde/infra-cisco/blob/main/02-project/01-cenario-A/Etapa-001-ConfiguracaoBase-Switch-2960.md
+
+#02_ Configuração do VTY Switch-2960 OK
+https://github.com/vaamonde/infra-cisco/blob/main/02-project/01-cenario-A/Etapa-002-ConfiguracaoVTY-Switch-2960.md
+
+#03_ Configuração do SVI Switch-2960 VLAN OK
+https://github.com/vaamonde/infra-cisco/blob/main/02-project/01-cenario-A/Etapa-003-ConfiguracaoGatewaySVI-Switch-2960.md
+
+#04_ Configuração do SSH Switch-2960 OK
+https://github.com/vaamonde/infra-cisco/blob/main/02-project/01-cenario-A/Etapa-004-ConfiguracaoSSH-Switch-2960.md

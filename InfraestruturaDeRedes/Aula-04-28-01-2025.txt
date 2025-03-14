@@ -1,0 +1,22 @@
+Objetivo da aula de hoje: 28/01/2025
+
+#01_ Topologia Física da Rede (MELHORIA) - OK
+Vídeo de Apoio: https://www.youtube.com/watch?v=5grhv0DFZNo
+
+#02_ Topologia Lógica da Rede (DOCUMENTAÇÃO E CONFIGURAÇÃO) - OK
+Vídeo de Apoio: https://www.youtube.com/watch?v=pdt0AdwQwX8
+
+#03_ Configuração do Git Bash e VSCode no Windows
+Vídeo de Apoio: https://www.youtube.com/watch?v=f9ZqzzhSzcA
+Material: https://github.com/vaamonde/infra-cisco/blob/main/01-install/02-vscode.md
+
+Hostname.....: NetBIOS
+Address IPv4.: ARP/RARP
+Address MAC..:
+
+2^8=256-2=254
+0   = ID
+255 = Broadcast
+
+Loopback - Localhost: 127.0.0.1
+APIPA: 169.254.0.0 - Microsoft - Erro

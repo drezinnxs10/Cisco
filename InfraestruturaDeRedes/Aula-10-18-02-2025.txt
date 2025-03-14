@@ -1,0 +1,12 @@
+Objetivo da aula de hoje: 18/02/2025
+
+#01_ Documentação Lógica da Segunda Topologia
+OBS: Utilizar o cálculo de IPv4 da última aula
+
+#02_ Configuração Base Switch 2960 Cenário B
+
+#03_ Configuração Base Switch 3650 Cenário B
+
+#04_ Configuração Base Router 4321 Cenário B
+
+#05_ Configuração Base Servidores Cenário B

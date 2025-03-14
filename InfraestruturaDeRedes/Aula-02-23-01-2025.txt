@@ -1,0 +1,16 @@
+Objetivo da aula de hoje: 23/01/2025 - CONTINUAÇÃO
+
+#01_ Material das aulas de Infraestrutura de Redes
+	a) T:\Publica\!!!!!!!RobsonVaamonde\InfraestruturaDeRedes
+	b) Github: https://github.com/vaamonde/infra-cisco
+	c) Cronogramas de Janeiro e Fevereiro na Rede
+
+#02_ Abrir o Projeto do Cisco Packet Tracer da útilma aula
+	a) DICA: fazer uma cópia do projeto, renomear com outro nome para criar um histórico de mudanças/evolução do projeto.
+
+#03_ Abrir e se autenticar no seu Github
+	a) DICA: recomendo salvar os projetos no Github e toda a documentação.
+
+#04_ Conhecendo a Infraestrutura de Redes de Computadores
+	 Material 1 - CONTINUAÇÃO E FINALIZAÇÃO.
+	

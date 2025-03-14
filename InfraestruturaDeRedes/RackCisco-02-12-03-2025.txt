@@ -1,0 +1,18 @@
+Objetivo da aula de hoje: 12/03/2025
+
+#01_ Ligar o Switch 3560 e Router 2911
+OBSERVAÇÃO: Aguardar a inicialização total dos equipamentos;
+
+#02_ Pegar 01 (um) Cabo Console por Grupo;
+
+OBSERVAÇÃO: Seguir o arquivo de Documentação no Github:
+https://github.com/vaamonde/infra-cisco/blob/main/03-rackcisco/00-DocumentacaoDaRede.md
+
+#03_ Configuração Básica do Switch 3560;
+https://github.com/vaamonde/infra-cisco/blob/main/03-rackcisco/02-ConfiguracaoBasicaDoSwitch-3560.md
+
+#04_ Configuração Básica do Router 2911;
+https://github.com/vaamonde/infra-cisco/blob/main/03-rackcisco/03-ConfiguracaoBasicaDoRouter-2911.md
+
+#05_ Configuração do VTY no Switch 3560 e no Router 2911.
+https://github.com/vaamonde/infra-cisco/blob/main/03-rackcisco/04-ConfiguracaoDoVTY-Switch-3560-Router-2911.md

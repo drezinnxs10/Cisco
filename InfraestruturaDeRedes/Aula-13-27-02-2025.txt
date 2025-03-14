@@ -1,0 +1,7 @@
+Objetivo da aula de hoje: 27/02/2025 - FINALIZAÇÃO DO PROJETO DE INFRAESTRUTURA DE REDES
+
+#01_ Configuração da Interface Roteada do Switch Multilayer
+https://github.com/vaamonde/infra-cisco/blob/main/02-project/02-cenario-B/Etapa-007-ConfiguracaoDaInterfaceRoteada-Switch-3650.md
+
+#02_ Configuração da Interface WAN e Rota Padrão e Estática
+https://github.com/vaamonde/infra-cisco/blob/main/02-project/02-cenario-B/Etapa-008-ConfiguracaoDaRotaEstaticaPadrao-Routers-Switch.md

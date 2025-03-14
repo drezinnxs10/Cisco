@@ -1,0 +1,10 @@
+Objetivo da aula de hoje: 11/02/2025
+
+#01_ Configuração Base Router 1941 - OK
+https://github.com/vaamonde/infra-cisco/blob/main/02-project/01-cenario-A/Etapa-005-ConfiguracaoBase-Router-1941.md
+
+#02_ Configuração da Interface LAN Gateway do Router 1941 - OK
+https://github.com/vaamonde/infra-cisco/blob/main/02-project/01-cenario-A/Etapa-006-ConfiguracaoInterfaceLAN-Router-1941.md
+
+#03_ Configuração do Serviço de DNS Server
+https://github.com/vaamonde/infra-cisco/blob/main/02-project/01-cenario-A/Etapa-007-ConfiguracaoDNSv4Server-Basico-Cenario-A.md

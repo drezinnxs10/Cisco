@@ -1,0 +1,19 @@
+Objetivo da aula de hoje: 21/01/2025
+
+#01_ Material das aulas de Infraestrutura de Redes
+	a) T:\Publica\!!!!!!!RobsonVaamonde\InfraestruturaDeRedes	ok
+	b) Github: https://github.com/vaamonde/infra-cisco			ok
+	c) Cronogramas de Janeiro e Fevereiro na Rede				ok
+
+#02_ Abrir e se autenticar no Cisco Packet Tracer				ok
+	a) Pesquisar no Windows: Cisco Packet Tracer
+	b) Se aparecer a opção de Habilitar o Multiuser clique em: SIM ou OK
+	c) Na tela de autenticar, habilitar a opção: (ON) Keep me logged in (for 3 months)
+	d) Clicar em: Cisco Networking Academy (Botão Azul);
+	e) Se autenticar com seu: USUÁRIO e SENHA.
+
+#03_ Abrir e se autenticar no seu Github						ok
+
+#04_ Conhecendo a Infraestrutura de Redes de Computadores		ok
+	 Material 1
+	

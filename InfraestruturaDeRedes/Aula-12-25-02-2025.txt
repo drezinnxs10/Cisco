@@ -1,0 +1,10 @@
+Objetivo da aula de hoje: 25/02/2025
+
+#01_ Configuração dos Trunks no Switch Multilayer 3650 e no Layer 2 2960 - OK
+https://github.com/vaamonde/infra-cisco/blob/main/02-project/02-cenario-B/Etapa-004-ConfiguracaoDosTrunks.md
+
+#02_ Configuração dos Gateways das SVI para as VLAN´s - OK
+https://github.com/vaamonde/infra-cisco/blob/main/02-project/02-cenario-B/Etapa-005-ConfiguracaoDosGateway.md
+
+#03_ Configuração do Serviço de DHCP Server para as VLAN´s
+https://github.com/vaamonde/infra-cisco/blob/main/02-project/02-cenario-B/Etapa-006-ConfiguracaoDHCPv4Server-Cenario-B.md

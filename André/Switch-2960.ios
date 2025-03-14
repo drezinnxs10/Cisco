@@ -1,0 +1,591 @@
+!Modo Exec privilegiado
+enable
+    !Configuração da Data e Hora
+    clock set 19:30:00 04 February 2025
+    !Modo de configuração Global
+    conigure terminal
+        !Configuração do Hostname
+        hostname sw-01
+        !Serviço de senhas
+        service password-encryption
+        !Serrviço de Marcação de data e hora
+        service timestamps log datetime msec 
+        !Desativar Resolução de Nomes
+        no ip domain-lookup
+        !Banner da Mensagem do Dia
+        banner motd #AVISO: CUIDADO#
+        !Segurança do Modo Enable
+        enable secret 123@senac
+        !Criando usuários e senhas de acesso
+        username senac secret 123@senac
+        username mauricio password 123@senac
+        username admin privilege 15 secret 123@senac 
+        !Configurar a linha (Line) Console
+        Line Console 0
+            !Forçar Login Local
+            login local
+            !Forçar senha no console (Redundancia)
+            password 123@senac
+            !Sincronismo de Log
+            logging synchronous
+            !Tempo de Inatividade
+            exec-timeout 5 30 
+            !Sair de todos os Modos
+            end
+    !Salvar as Configurações da RAM para a NVRAM
+    copy running-config startup-config
+!Para sair do modo Enabe
+disable
+
+enable
+    !Visualizando as Configurações
+    show running-config 
+    !Vizualizando a Data e Hora
+    show clock
+#Sair de todos os niveis
+exit
+
+enable
+    conigure terminal
+        !Configurar as Linhas Virtuais
+        line vty 0 4
+            login local 
+            password 123@senac
+            logging synchronous
+            exec-timeout 5 30
+            transport input ssh 
+            end
+    copy runnig-config startup-config
+
+enable
+    configure terminal
+        !Configurar o Gateway padrão
+        ip default-gateway 192.168.1.254
+        !Configurar a SVU do Switch
+        interface vlan 1
+            !Configurtar a descrição
+            description Interface de SVI
+            !Configurar o endereço IPv4
+            ip address 192.168.1.250 255.255.255.0
+            !Iniciar a interface SVI
+            no shutdown
+            end
+write
+
+show runnig-config
+!
+show ip interface brief
+!As VLANs que existe no meu Shitch
+show vlan brief
+
+enable
+    configure terminal
+        !Configurar o Dominio FQDN
+        !hostname.domain.br 
+        ip domain-name senac.br 
+        !Habilitar o SSH Server
+        crypto key generate rsa general-keys modulus 1024 
+        !Habilitar a Versão 2
+        ip ssh version 2 
+        !Tempo de Inatividade
+        ip ssh time-out 60
+        !Numero Maximo de Conexões
+        ip ssh authentication-retries 2
+        end
+write
+
+ssh -l senac 192.168.1.250
+ssh -l admin 192.168.1.251
+
+Roteador rt-01
+
+enable 
+    clock set 19:30:00 11 February 2025
+    configure terminal
+        hostname rt-01
+        service password-encryption
+        service timestamps log datetime msec
+        service timestamps debug datetime msec
+        no ip domain-lookup
+        banner motd #AVISO: CUIDADO#
+        security passwords min-length 8
+        enable secret 123@senac
+        username senac secret 123@senac
+        username mauricio password 123@senac
+        username admin privilege 15 secret 123@senac
+        !no serve para remover ou apagar o que preciso
+        no username senac
+        !do - é para executar de qualquer nivel que está executar de onde está 
+        do show runnig-config
+        ip domain-name senac.br 
+        crypto key generate rsa general-keys modulus 1024
+        ip ssh version 2
+        ip ssh timeout 60
+        ip ssh authentication-retries 2
+        login block-for 120 attempts 2 within 60 
+        line console 0
+            login local 
+            logging synchronous
+            exec-timeout 5 30
+            exit
+        line vty 0 4
+            login local
+            logging synchronous
+            exec-timeout 5 30
+            transport input ssh 
+            end
+write
+
+Configurando Roteador
+
+enable
+    configure terminal
+        interface gigabitEthernet 0/0
+            description Interface de Gateway da Rede LAN
+            ip address 192.168.1.254 255.255.255.0
+            no shutdown
+            end
+write
+
+!Dentro do Router
+show runnig-config
+show ip interface brief
+ping 192.168.1.250
+ping 192.168.1.251
+ping 192.168.1.1
+show ip route
+
+!Desktop
+ping 192.168.1.254
+ssh -l admin 123@senac
+
+DNS-Server
+
+enable
+    configure terminal
+        ip domain-lookup
+        !ip domain-name senac.br
+        ip name-server 192.168.1.1
+        ip host google 8.8.8.8
+        end
+write
+
+!Backup do Switch Cisco Catalist 2960 Layer 2
+ping 192.168.1.250
+ping sw-01
+ssh -l admin sw-01
+enable
+    show version
+    show boot
+    show flash:
+        2960-lanbasek9-mz.150-2.SE4.bin
+    copy running-config startup-config 
+    dir nvram
+    copy startup-config flash:
+    show running-config (Cópia no VSCode)
+    ping 192.168.1.1
+    copy startup-config tftp: 
+        192.168.1.1 (server)
+        sw-01-config (nome do arquivo)
+    show flash: 
+    copy flash: tftp: 
+        2960-lanbasek9-mz.150-2.SE4.bin (arquivo que queremos copiar)
+        192.168.1.1 (server)
+        2960-lanbasek9-mz.150-2.SE4.bin(nome do arquivo)
+
+!Backup Router Cisco 1941
+enable
+    copy running-config startup-config
+    copy startup-config flash: 
+    show flash: 
+        c1900-universalk9-mz.SPA.151-4.M4.bin
+    copy flash: tftp:
+        c1900-universalk9-mz.SPA.151-4.M4.bin (imagem do router)
+        192.168.1.1 (server)
+        c1900-universalk9-mz.SPA.151-4.M4.bin (nome do arquivo)
+    copy startup-config tftp:
+        192.168.1.1 (server)
+        rt-01-config (nome do arquivo)
+    show running-config (Cópia do VSCode)
+
+!Shitch Laier 3 configuração 2
+enable
+    configure terminal
+        show vlan brief
+        vlan 10
+            name FIN
+        vlan 20
+            name EST
+        vlan 30
+            name FAT
+        vlan 40
+            name GER
+        vlan 50
+            name Server
+        vlan 60
+            name Wireless 
+        vlan 99
+            name SVI-Switch
+            end
+write
+
+show vlan brief
+
+!Configuração do SVI e Porta de acesso a Vlan 3650
+enable
+    configure terminal
+        interface vlan 99
+            description Interface de SVI Switch 3650
+            ip address 172.16.0.97 255.255.255.224
+            no shutdown
+            end
+write
+
+show ip interface brief 
+
+!Configuração do SVI e Porta de acesso a Vlan 2960
+enable
+    configure terminal
+        interface vlan 99
+            description Interface de SVI Switch 2960
+            ip address 172.16.0.98 255.255.255.224
+            no shutdown
+            end
+write
+
+show ip interface brief 
+
+enable
+    configure terminal
+        interface vlan 99
+            description Interface de SVI Switch 2960
+            ip address 172.16.0.99 255.255.255.224
+            no shutdown
+            end
+write
+
+!Configuração das Portas de acesso das VLAN'S
+enable
+    configure terminal
+        interface range gigabitEthernet 1/0/10 - 19
+            description Interfaces dos Servidores
+            switchport mode access
+            switchport nonegotiate
+            switchport access vlan 50
+            end
+write
+
+!Configurar das VLAN's da Rede Sem-Fio
+enable
+    configure terminal
+        interface range gigabitEthernet 1/0/20 - 23
+            description Rede sem Fio
+            switchport mode access
+            switchport nonegotiate
+            switchport access vlan 60
+            end
+write
+!Desligar as portas que não estão sendo utilizadas.
+para desabilitar as portas do Switch's é shutdown
+enable
+    configure terminal
+        interface range gigabitEthernet 1/0/5 - 9
+            shutdown (disable - Desabilita a porta mas não trafega)
+        interface range gigabitEthernet 1/0/14 - 19
+            shutdown (disable - Desabilita a porta mas não trafega)
+        interface range gigabitEthernet 1/0/21 - 23
+            shutdown (disable - Desabilita a porta mas não trafega)
+        interface range gigabitEthernet 1/1/1 - 4
+            shutdown (disable - Desabilita a porta mas não trafega)
+end
+write
+show ip interface brief
+
+!Desafio Final : COnfigurar as Portas de rede das VLAN dos Switch 2960
+!Desligar as portas que não estão sendo utilizadas.
+!Ranges das portas: VALN-10     1 - 4
+                    VLAN-20     5 - 9
+                    VLAN-30     10 - 14
+                    VLAN-40     15 - 20
+
+enable
+    configure terminal
+        interface range fastEthernet 0/1 - 4
+            switchport mode access
+            switchport nonegotiate
+            switchport access vlan 10
+            end
+
+enable
+    configure terminal
+        interface range fastEthernet 0/5 - 9
+            switchport mode access
+            switchport nonegotiate
+            switchport access vlan 20
+            end
+
+enable
+    configure terminal
+        interface range fastEthernet 0/10 - 14
+            switchport mode access
+            switchport nonegotiate
+            switchport access vlan 30
+            end
+
+enable
+    configure terminal
+        interface range fastEthernet 0/15 - 20
+            switchport mode access
+            switchport nonegotiate
+            switchport access vlan 40
+            end
+
+enable
+    configure terminal
+        interface range fastEthernet 0/2 - 4
+            shutdown (disable - Desabilita a porta mas não trafega)
+        interface range fastEthernet 0/6 - 9
+            shutdown (disable - Desabilita a porta mas não trafega)
+        interface range fastEthernet 0/11 - 14
+            shutdown (disable - Desabilita a porta mas não trafega)
+        interface range fastEthernet 0/16 - 22
+            shutdown (disable - Desabilita a porta mas não trafega)
+end
+write
+
+!Configurando o Multilayer 3650
+
+enable
+    configure terminal
+        show vlan brief
+        show ip interface brief
+        show running-config
+        interface range gigabitEthernet 1/0/1 - 9
+            description Inerface de Trunk
+            switchport mode Trunk
+            switchport nonegotiate
+            end
+write
+
+!Configurando o Layer 2 2960
+
+enable
+    configure terminal
+        show vlan brief
+        show ip interface brief
+        show running-config
+        interface range gigabitEthernet 0/1 - 2, fastEthernet 0/23 - 24
+            description Inerface de Trunk
+            switchport mode Trunk
+            switchport nonegotiate
+            end
+write
+
+!Configurando o Gateway Multilayer 3650
+
+enable
+    configure terminal
+        ip routing
+        (show ip route)
+        interface vlan 10
+            description Interface de Gateway VLAN-10
+            ip address 172.16.0.158 255.255.255.224
+            no shutdown
+            end
+write
+
+show ip interface brief
+show ip route
+
+enable
+    configure terminal
+        ip default-gateway 172.16.0.97
+        end
+write
+
+enable
+    configure terminal
+        interface vlan 10
+        ip helper-address 172.16.0.33
+        end
+write
+
+!Prompt de Comando
+ipconfg /release
+ipconfg  /renew
+
+--------------------------------------------------------------------------
+DATA 02/27/2025
+
+enable
+    configure terminal
+        interface gigabitEthernet 1/0/24
+            no switchport
+            description Interface com um Route 4321
+            ip address 172.16.0.29 255.255.255.224
+            (Caso queira pode colocar o comando - no shutdown)
+            exit
+        ip default-gateway 172.16.0.30
+        end
+write
+
+-------------------------------------------------------------------------
+
+!Configuração do Route 4321
+
+enable
+    conigure terminal
+        interface gigabitEthernet 0/0/1
+            description Interface Switch 3650
+            ip address 172.16.0.30 255.255.255.224
+            no shutdown
+            end
+write
+
+-------------------------------------------------------------------------
+show ip interface brief
+show ip route
+
+!Configuração da parte da Internet
+
+enable
+    configure terminal
+        interface gigabitEthernet 0/0/0
+            media-type sfp
+            description Interface WAN 4321 para 1941
+            ip address 10.0.0.2 255.255.255.252
+            no shutdown
+            end
+write
+
+show ip interface brief
+show ip route
+
+--------------------------------------------------------------------------
+
+enable
+    configure terminal
+        interface gigabitEthernet 0/0/0
+            description Interface WAN 1941 para 4321
+            ip address 10.0.0.1 255.255.255.252
+            no shutdown
+            end
+write
+
+show ip interface brief
+show ip route
+
+-----------------------------------------------------------------------------
+
+!Route 1941
+
+enable
+    configure terminal
+        ip route 0.0.0.0 0.0.0.0 10.0.0.2
+        end
+write
+
+-----------------------------------------------------------------------------
+
+!Route 4321
+
+enable
+    configure terminal
+        ip route 192.168.1.0 255.255.255.0 10.0.0.1
+        ip route 0.0.0.0 0.0.0.0 172.16.0.29
+        end
+write
+
+-----------------------------------------------------------------------------
+
+!Switch layer 3 3650
+
+enable
+    configure terminal
+        ip route 0.0.0.0 0.0.0.0 172.16.0.30
+        end
+write
+
+!Enterchanel Switch layer 2 2960
+
+enable
+    configure terminal
+        interface range fastEthernet 0/23 - 24
+            channel-group 1 mode active
+        interface range gigabitEthernet 0/1 - 2
+            channel-group 2 mode active 
+            end
+write
+
+enable
+    configure terminal
+        interface range fastEthernet 0/23 - 24
+            channel-group 1 mode active
+        interface range gigabitEthernet 0/1 - 2
+            channel-group 3 mode active
+            end
+write
+
+!Enterchanel Switch layer 3 3650
+
+enable
+    configure terminal
+        interface range gigabitEthernet 1/0/1 - 2
+            channel-group 2 mode active
+        interface range gigabitEthernet 1/0/3 - 4
+            channel-group 3 mode active
+            end
+write
+
+-----------------------------------------------------------
+02/28/2025
+
+!SP
+enable
+    conigure terminal
+        hostname RT-SP 
+        interface fastEthernet 0/0
+            ip address 192.168.10.1 255.255.255.0
+            description PORTA LAN DE SP
+            no shutdown
+            exit
+        interface serial 0/1
+            ip address 10.0.0.1 255.0.0.0
+            description PORTA WAN DE SP PARA RJ
+            no shutdown
+            clock rate 128000
+            bandwidth 128
+            exit
+        router rip
+            network 192.168.10.0
+            network 10.0.0.0
+            end
+write
+
+
+!RJ
+enable
+    conigure terminal
+        hostname RT-RJ 
+        interface fastEthernet 0/1
+            ip address 192.168.20.1 255.255.255.0
+            description PORTA LAN DE RJ
+            no shutdown
+            exit
+        interface serial 0/0
+            ip address 10.0.0.2 255.0.0.0
+            description PORTA WAN DE RJ PARA SP
+            no shutdown
+            clock rate 128000
+            bandwidth 128
+            exit
+        router rip
+            network 192.168.20.0
+            network 10.0.0.0
+            end
+write
+
+enable
+    erese startup-config
+    reload
+

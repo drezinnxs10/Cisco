@@ -1,0 +1,21 @@
+Objetivo da aula de hoje: 30/01/2025
+
+#01_ Material de Infraestrura de Redes 2 - OK
+https://github.com/vaamonde/infra-cisco/blob/main/05-pdf/InfraestruturaDeRedes-02.pdf
+
+#02_ Verificando os Protocolos TCP e UDP no Projeto do Cisco Packet Tracer - OK
+
+#03_ Configuração do VSCode para trabalhar com o Cisco IOS
+https://github.com/vaamonde/infra-cisco/blob/main/01-install/02-vscode.md
+
+#Comando básicos de Windows para Redes
+getmac: https://ss64.com/nt/getmac.html
+arp: https://ss64.com/nt/arp.html
+ipconfig: https://ss64.com/nt/ipconfig.html
+nslookup: https://ss64.com/nt/nslookup.html
+ping: https://ss64.com/nt/ping.html
+netstat: https://ss64.com/nt/netstat.html
+findstr: https://ss64.com/nt/findstr.html
+
+#04_ Configuração do Switch 2960
+https://github.com/vaamonde/infra-cisco/blob/main/02-project/01-cenario-A/Etapa-001-ConfiguracaoBase-Switch-2960.md
